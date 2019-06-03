@@ -20,18 +20,41 @@ function buildMetadata(sample) {
       // buildGauge(data.WFREQ)
     });
   
-    buildGauge(data.WFREQ);
+    // buildGauge(data.WFREQ);
 }
 
 function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
+    d3.json(`/metadata/${sample}`).then((response) => {
+      
+      console.log(response);
 
+     var trace = {
+       type: "bubble",
+       mode: "markers",
+
+     };
+
+     var data = [trace];
+
+     var layout = {
+       title: "samples",
+       showlegend: false,
+       height: 600,
+       width: 300,
+     };
+
+     Plotly.newPlot('bubble', data, layout);
+    
+
+    
     // @TODO: Build a Bubble Chart using the sample data
 
     // @TODO: Build a Pie Chart
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
+    });
 }
 
 function init() {
